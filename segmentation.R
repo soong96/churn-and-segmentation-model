@@ -84,25 +84,7 @@ segmentation_model
 
 
 
-
 save(segmentation_model, file = "E:\\pd\\churn and segmentation\\Segmentation-and-Churn-Model\\segmentation_model.rda")
 
 
-
-# Running the Model using kmeans method (Unsupervised Learning - Classification)
-load(file = "segmentation_model.rda") #Saved November Model M
-
-
-# Scoring & Segment Tagging
-set.seed(2345)
-Segment.Distribution <-predict(segmentation_model,newdata=(Segment.Model.Normalized))
-Segmented_Data <- cbind(PreSegmented_Data,Segment.Distribution)
-Segmented_Data <- data.frame(Segmented_Data,row.names = NULL)
-colnames(Segmented_Data)[dim(Segmented_Data)[2]]<-"Segment"
-
-
-# Export data to database
-channel_2 <- odbcConnect("segmented", uid ="jsoong", pwd = "min1226")
-Insertdata<-sqlSave(channel_2,Segmented_Data,"dbo.segmented_data",rownames=FALSE,append=TRUE)
-close(channel_2)
 
