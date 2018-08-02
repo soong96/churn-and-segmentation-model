@@ -106,7 +106,3 @@ channel_2 <- odbcConnect("segmented", uid ="jsoong", pwd = "min1226")
 Insertdata<-sqlSave(channel_2,Segmented_Data,"dbo.segmented_data",rownames=FALSE,append=TRUE)
 close(channel_2)
 
-head(Current.Score.Combined)
-
-#print(channel_2) -- track the connection whether in the same database 
-#print(channel)
